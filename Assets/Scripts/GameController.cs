@@ -13,12 +13,17 @@ public class GameController : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
-        SpawnBall();
+        m_spawnTime = 0;
     }
 
     // Update is called once per frame
     void Update() {
-        
+        m_spawnTime -= Time.deltaTime;
+
+        if (m_spawnTime <= 0) {
+            SpawnBall();
+            m_spawnTime = spawnTime;
+        }
     }
 
     public void SpawnBall() {
