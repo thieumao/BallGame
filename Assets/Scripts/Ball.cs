@@ -3,14 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Ball : MonoBehaviour {
-    private void OnCollisionEnter2D(Collision2D collision)  {
+
+    GameController m_gc;
+
+	private void Start() {
+        m_gc = FindObjectOfType<GameController>();
+	}
+
+	private void OnCollisionEnter2D(Collision2D collision)  {
         if (collision.gameObject.CompareTag("Player")) {
+            m_gc.IncrementScore();
+            Destroy(gameObject);
             Debug.Log("Da va cham");
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag("DeathZone")) {
+            m_gc.SetGameoverState(true);
+            Destroy(gameObject);
             Debug.Log("Da va cham DeathZone");
         }
     }

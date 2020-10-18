@@ -20,6 +20,11 @@ public class GameController : MonoBehaviour
     void Update() {
         m_spawnTime -= Time.deltaTime;
 
+        if (m_isGameover) {
+            m_spawnTime = 0;
+            return;
+        }
+
         if (m_spawnTime <= 0) {
             SpawnBall();
             m_spawnTime = spawnTime;
