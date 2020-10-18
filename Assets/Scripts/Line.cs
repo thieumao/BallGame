@@ -21,9 +21,11 @@ public class Line : MonoBehaviour
         if (xDirection != 0)
         {
             moveStep = moveSpeed * xDirection * Time.deltaTime;
+        if (xDirection != 0)
+            if ((transform.position.x < -7 && xDirection < 0) || (transform.position.x > 7 && xDirection > 0)) {
+                return;
+            }
             transform.position = transform.position + new Vector3(moveStep, 0, 0);
-            Debug.Log("Luc am");
-            Debug.Log(moveStep);
         } 
     }
 }
